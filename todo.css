@@ -20,8 +20,8 @@ align-items: center;
     left:10%;
       border-radius: 10px;
   }
-  .btn{
-   background-color: #E74C3C ;
+  #btn{
+   background-color: black;
     border: none; 
     color:white;
     height: 40px;
@@ -61,15 +61,33 @@ align-items: center;
   input{
       border: none;   
   }
+.libtn{
+  background-color: grey;
+  font-size: 20px;
 
+}
   ul
   {
-    list-style-type:none;
+   background-color: blanchedalmond;
   }
-  ul li{
-    min-width: 30%;
-list-style: none;
+  .dtlbtn
+  {
+   
+    border: none; 
+    color:black;
+    height:50px;
+    width: 20%;
+ 
+   font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer; 
+
+    background-color:ghostwhite;
+   top:30%;
+   left:80%
+    
   }
+  
   .todo {
 display: flex;
 justify-content: space-between;
@@ -81,9 +99,6 @@ transition: all 0.5s ease;
 }
 
 
- .libtn{
-   list-style-type: none;
- }
  .title
  {
    margin-top: -50px;
@@ -92,8 +107,4 @@ transition: all 0.5s ease;
    border-bottom: white;
  }
   
- *:focus,
-*:active {
-outline: 0 !important;
-box-shadow: 0 !important;
-}
+ 

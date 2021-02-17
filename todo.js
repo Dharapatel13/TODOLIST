@@ -1,21 +1,37 @@
- //selector
- const todoInput=document.querySelector(".inpt");
- const addBtn=document.querySelector(".btn");
- const  todoList=document.querySelector(".todo-list")
- function addItem() {
-  var x = document.getElementById("myText").value;
-  var todo = document.createElement("LI");
-  var dtlbtn=document.createElement("button");
 
-var textnode = document.createTextNode(x);
-todo.appendChild(textnode);
-document.getElementById("myList").appendChild(todo);
-}
-//delete item form to do list
-function deleteTodos(e) {
-if (e.target.classList.contains('delete')) {
-e.target.parentElement.remove();
-}
-}
 
-todoList.addEventListener('click', deleteTodos);
+      var tasks=[];
+      //ADD TODOLIST
+      function on_addbtn_click()
+      {
+        var task_input=document.getElementById("inpt").value;
+          if(task_input==="")
+          {
+              alert("You must be write somting");
+          }
+          else{
+            tasks.push(task_input);
+           
+           var ul=document.getElementById("myList");
+                ul.innerHTML = '';
+             for(var i=0;i<tasks.length;i++)
+             {  
+             
+                 const dtlbtn=document.createElement("button");
+                 dtlbtn.innerText="delete";
+                 dtlbtn.className="libtn";
+                 const editbtn=document.createElement("button");
+                 editbtn.innerText="edit";
+                 editbtn.className="libtn";
+                const li=document.createElement("li");
+                li.className="ul"
+              ul.appendChild(li);
+              li.innerHTML=tasks[i];
+               //append delete button to list items
+              li.appendChild(editbtn);
+              li.appendChild(dtlbtn);
+             }
+          }  
+      }
+      
+   
