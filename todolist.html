@@ -12,21 +12,30 @@
     
   </head>
   <body>
-  <div class="section1">
-   
-     <h1 class="title">TO DO LIST</h1>
-      <main class="card">
-   <input placeholder="What you Want To Do......"   id="inpt" type="text" class="inpt"  value=""/>
-    <button   id="btn" onclick="on_addbtn_click()" class="btn"><i class="fa fa-plus"></i></button>
-         
-      
-   <div class="todo-list">
-    <ul id="myList">
-      
-    </ul>
     
-   </div>
-      </main></div>
+  <div class="section1">
+    
+     <h1 class="title">TO DO LIST</h1>
+     
+   <input placeholder="What you Want To Do......"   id="inpt" type="text" class="inpt"  value=""/>
+    <button   id="btn" onclick="onAddBtnClick()" class="btn"><i class="fa fa-plus"></i></button>
+   <div>
+     <select id="selected">
+      
+        <option value="all" id="all">All</option>
+        <option value="completed" id="cmplt">Completed</option>
+        <option value="uncompleted" id="uncmplt">Uncompleted</option>
+    
+     </select>
+  </div>
+  <div class="todo-container">
+    <ul id="myList" class="ul">
+        
+    </ul> 
+  </div>
+     
+    <button class="reset"  id="reset" onClick='onRstBtnClick()' >RESET</button>
+    </div>
         <script src="./todo.js">
     
     </script>
