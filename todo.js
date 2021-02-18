@@ -1,6 +1,6 @@
 
 
-      var tasks=[];
+      //var tasks=[];
       //ADD TODOLIST
       function on_addbtn_click()
       {
@@ -10,28 +10,44 @@
               alert("You must be write somting");
           }
           else{
-            tasks.push(task_input);
-           
            var ul=document.getElementById("myList");
-                ul.innerHTML = '';
-             for(var i=0;i<tasks.length;i++)
-             {  
-             
-                 const dtlbtn=document.createElement("button");
-                 dtlbtn.innerText="delete";
-                 dtlbtn.className="libtn";
-                 const editbtn=document.createElement("button");
-                 editbtn.innerText="edit";
-                 editbtn.className="libtn";
-                const li=document.createElement("li");
-                li.className="ul"
-              ul.appendChild(li);
-              li.innerHTML=tasks[i];
-               //append delete button to list items
-              li.appendChild(editbtn);
-              li.appendChild(dtlbtn);
-             }
+           const li=document.createElement("li");
+           const span=document.createElement("span");     
+           li.appendChild(span);
+           span.innerHTML=task_input+"<button id='delete'  class='libtn'  >DELETE</button>"+"<button id='edit' class='libtn'>EDIT</button>";
+           task_input.value='';
+           ul.appendChild(li);
+     
           }  
       }
+      const ul = document.querySelector('#myList');
       
+      ul.addEventListener('click', function(event) {
+       
+        if(event.target.tagName === 'BUTTON') {
+          const button = event.target;
+          const span = button.parentNode;
+          const li=span.parentNode;
+          const ul = li.parentNode;
+          if(button.textContent === 'DELETE') {
+            ul.removeChild(li);   
+         } else if(button.textContent === 'EDIT') {
+            const span= li.firstElementChild;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = span.textContent;
+            li.insertBefore(input, span);
+            li.removeChild(span);
+            button.textContent = 'UPDATE';
+          } else if(button.textContent === 'UPDATE') {
+            const input = li.firstElementChild;
+            const span = document.createElement('span');
+            span.textContent = input.value;
+            li.insertBefore(span, input);
+            li.removeChild(input);
+            button.textContent = 'EDIT';
+          }
+       }
+      });
+    
    
