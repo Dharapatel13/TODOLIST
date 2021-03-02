@@ -1,45 +1,38 @@
 <html>
-<title>TO DO List</title>
+<title>TO DO Manager</title>
+
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
-  <script
-  src="https://kit.fontawesome.com/e7ebc2fc39.js"
-  crossorigin="anonymous"
-></script>
-   
-   
-<link rel="stylesheet" href="todo.css" />
-    
-  </head>
-  <body>
-    
-  <div class="section1">
-    
-     <h1 class="title">TO DO LIST</h1>
-     
-   <input placeholder="What you Want To Do......"   id="inpt" type="text" class="inpt"  value=""/>
-    <button   id="btn" onclick="onAddBtnClick()" class="btn"><i class="fa fa-plus"></i></button>
-   <div>
-     <select id="selected">
-      
-        <option value="all" id="all">All</option>
-        <option value="completed" id="cmplt">Completed</option>
-        <option value="uncompleted" id="uncmplt">Uncompleted</option>
-    
-     </select>
-  </div>
-  <div class="todo-container">
-    <ul id="myList" class="ul">
-        
-    </ul> 
-  </div>
-     
-    <button class="reset"  id="reset" onClick='onRstBtnClick()' >RESET</button>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide" />
+    <script src="https://kit.fontawesome.com/e7ebc2fc39.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="todo.css" />
+
+</head>
+
+<body>
+    <!-- title-->
+    <h1 class="title">TO DO MANAGER</h1>
+    <!--input-section-->
+    <main class="main">
+        <input placeholder="What you Want To Do......" id="inpt" type="text" maxlength="32" class="main__inpt" value="" onkeypress="onKeyPressEvnt(event)" />
+        <button id="btn" onclick="onAddBtnClick()" class="main__addBtn">Add</button>
+        <button class="main__resetBtn" id="reset" onClick='onRstBtnClick()'><i class="fa fa-refresh"></i></button>
+        <select id="selected-task" class="main_select">
+                <option value="all">ALL</option>
+                <option value="completed">Completed</option>
+                <option value="uncompleted">Uncompleted</option>
+         </select>
+    </main>
+    <!--Todo list-->
+    <div class="Todos">
+        <ul id="myList" class="todo__list">
+        </ul>
     </div>
-        <script src="./todo.js">
-    
+
+    <!-- javascript script -->
+    <script src="./todo.js">
     </script>
-  </body>
-  
+</body>
 
 </html>

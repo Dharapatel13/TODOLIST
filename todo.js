@@ -1,102 +1,161 @@
+//selector
+const elTodoList = document.getElementById("myList");
+const elDrpDwn = document.getElementById("selected-task");
+const elInput = document.getElementById("inpt");
 
-      function onAddBtnClick()
-      {
-       
-        var task_input=document.getElementById("inpt").value;
-          if(task_input==="")
-          {
-              alert("You must be write somting");
-          }
-          else{
-           var ul=document.getElementById("myList");
-           const li=document.createElement("li");
-           const span=document.createElement("span");  
-           const editBtn = document.createElement('button');
-          editBtn.textContent = 'EDIT';
-          editBtn.className="libtn";
-          const dtlBtn = document.createElement('button');
-          dtlBtn.textContent = 'DETELE';
-          dtlBtn.className="libtn";
-          const div=document.createElement("div")
-          const check=document.createElement("button");
-          check.textContent="<i class='fas fa-check'></i>";
-         
-         
-           li.appendChild(span);
-           li.appendChild(check);
-           li.appendChild(editBtn);
-           li.appendChild(dtlBtn);
-        
-           span.innerHTML=task_input;
-           task_input.value="";
-           ul.appendChild(div);
-           div.appendChild(li);
-          
-     
-          }  
-      }
-     
-      document.getElementById("myList").addEventListener('click', function(event) {
-       
-        if(event.target.tagName === 'BUTTON') {
-          const button = event.target;
-          console.log(button);
-          const li = button.parentNode;
-          const div = li.parentNode;
-          const ul=div.parentNode;
-       if(button.textContent === 'DETELE') {
-            ul.removeChild(div);   
-         } else if(button.textContent === 'EDIT') {
-            const span= li.firstElementChild;
-            const input = document.createElement('input');
-            input.className="listinpt";
-            input.type = 'text';
-            input.value = li.firstElementChild.textContent;
-            console.log(input.value);
-            li.insertBefore(input,span);
-            li.removeChild(span);
-            button.textContent = 'UPDATE';
-          } else if(button.textContent === 'UPDATE') {
-            const input = li.firstElementChild;
-            const span = document.createElement('span');
-            span.textContent = input.value;
-            li.insertBefore(span, input);
-            li.removeChild(input);
-            button.textContent = 'EDIT';
-          }
+let list = [];
 
-       }
-     
-      });
-      
-     function onRstBtnClick(){
-        document.getElementById("myList").innerHTML="";
-      }
+//loding page
+window.onload = () => {
 
+    if (JSON.parse(localStorage.getItem("todos")) != null)
+        list = JSON.parse(localStorage.getItem("todos"));
+    for (let i = 0; i < list.length; i++) {
+        const elLi = document.createElement("li");
+        const elSpan = document.createElement("span");
+        const elEditBtn = document.createElement('button');
+        elEditBtn.innerHTML = '<i class="fa fa-edit"></i>';
+        elEditBtn.classList.add('jsEdit');
+        const elDtlBtn = document.createElement('button');
+        elDtlBtn.innerHTML = '<i class="fa fa-trash"></i>'
+        elDtlBtn.classList.add('jsDtl')
+        const elCheckBtn = document.createElement("button");
+        elCheckBtn.innerHTML = '<i class="fa fa-check"></i>'
+        elCheckBtn.classList.add('check');
+        elLi.appendChild(elSpan);
+        elLi.appendChild(elCheckBtn);
+        elLi.appendChild(elDtlBtn);
+        elLi.appendChild(elEditBtn);
+        elSpan.innerHTML = list[i];
+        elInput.innerHTML = "";
+        elTodoList.appendChild(elLi);
+    }
 
-      const show=document.getElementById("selected");
-      show.addEventListener("click",function(e){
-        const option=show.childNodes;
-        if(e.target.tagName===option)
-        {  
-          const optn = e.target;
-          const  stl= optn.parentNode;
-          if(document.textContent==="All")
-          {
-            const ul=document.getElementById("myList");
-            const div=ul.childNodes;
-            const li=div.childNodes;
-            ul.style.display="flex";
-            
-          }
-          else if(document.textContent==="Completed")
-          {
-            const checkbox=li.firstElementChild
-           
-            
-          }
+};
+
+//OnAddButton Click
+const onAddBtnClick = () => {
+    location.reload()
+    let elInput = document.getElementById("inpt").value;
+
+    if (elInput == null || elInput == 0 || elInput === "") {
+        alert("You must be write somting");
+    }
+    document.getElementById("myList").innerHTML = "";
+    list.push(elInput);
+    localStorage.setItem("todos", JSON.stringify(list));
+
+}
+
+//onKey Press
+const onKeyPressEvnt = (event) => {
+    let x = event.which || event.keyCode;
+    if (x == 13) {
+        location.reload();
+        let elInput = document.getElementById("inpt").value;
+
+        if (elInput == null || elInput == 0 || elInput === "") {
+            alert("You must be write somting");
         }
-       
-      });
-    
-   
+        document.getElementById("myList").innerHTML = "";
+        list.push(elInput);
+        localStorage.setItem("todos", JSON.stringify(list));
+    }
+}
+
+//clear local Storage Data
+const onRstBtnClick = () => {
+    location.reload();
+    elTodoList.innerHTML = "";
+    localStorage.clear();
+
+}
+
+
+//li button Click
+elTodoList.addEventListener('click', (event) => {
+
+    if (event.target.tagName === 'BUTTON') {
+        const trgBtn = event.target;
+        const jLi = trgBtn.parentNode;
+        const jSpan = jLi.firstElementChild.textContent;
+
+        if (trgBtn.classList[0] === "jsDtl") {
+            location.reload();
+            let list;
+            if (localStorage.getItem("todos") == null) {
+                list = [];
+            } else {
+                list = JSON.parse(localStorage.getItem('todos'));
+            }
+            const todoindex = jSpan;
+            list.splice(list.indexOf(todoindex), 1);
+            localStorage.setItem("todos", JSON.stringify(list))
+        } else if (trgBtn.classList[0] === "jsEdit") {
+            const jsSpan = jLi.firstElementChild;
+            const input = document.createElement('input');
+            input.type = 'text';
+            jLi.removeChild(trgBtn);
+            input.value = jLi.firstElementChild.textContent;
+            jLi.insertBefore(input, jsSpan);
+            const btn = document.createElement("button");
+            btn.textContent = "DONE";
+            jLi.appendChild(btn);
+
+
+        } else if (trgBtn.textContent === "DONE") {
+            location.reload();
+            const input = jLi.firstElementChild;
+            console.log(jLi.childNodes[1].tagName)
+            let jsInput = input.value;
+            let list;
+            if (localStorage.getItem("todos") == null) {
+                list = [];
+            } else {
+                list = JSON.parse(localStorage.getItem('todos'));
+            }
+            for (let i = 0; i < list.length; i++) {
+                if (list[i] === jLi.childNodes[1].textContent) {
+                    const todoindex = jLi.childNodes[1].textContent;
+                    list.splice(list.indexOf(todoindex), 1, jsInput);
+
+                }
+                localStorage.setItem("todos", JSON.stringify(list))
+            }
+
+        } else if (trgBtn.classList.contains("check")) {
+
+            const li = trgBtn.parentNode;
+            li.classList.toggle("cmpted")
+
+        }
+
+    }
+});
+
+
+//Display Cmplted & Uncmplted
+elDrpDwn.addEventListener("change", (e) => {
+    const todos = elTodoList.childNodes;
+    for (let i = 1; i < todos.length; i++) {
+        switch (e.target.value) {
+            case "all":
+                todos[i].style.display = "flex";
+                break;
+            case "completed":
+                if (todos[i].classList.contains('cmpted')) {
+                    todos[i].style.display = "flex";
+                } else {
+                    todos[i].style.display = "none";
+                }
+                break;
+            case "uncompleted":
+                if (!todos[i].classList.contains('cmpted')) {
+                    todos[i].style.display = "flex";
+                } else {
+                    todos[i].style.display = "none";
+                }
+                break;
+        }
+    }
+});
