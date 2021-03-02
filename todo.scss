@@ -63,7 +63,7 @@ $bgcolor:#2C3E50;
         font-weight: bolder;
         border: none;
     }
-    .main_select {
+    .main__select {
         @include btn;
         background-color: lightgray;
     }
