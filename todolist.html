@@ -15,10 +15,10 @@
     <h1 class="title">TO DO MANAGER</h1>
     <!--input-section-->
     <main class="main">
-        <input placeholder="What you Want To Do......" id="inpt" type="text" maxlength="32" class="main__inpt" value="" onkeypress="onKeyPressEvnt(event)" />
-        <button id="btn" onclick="onAddBtnClick()" class="main__addBtn">Add</button>
-        <button class="main__resetBtn" id="reset" onClick='onRstBtnClick()'><i class="fa fa-refresh"></i></button>
-        <select id="selected-task" class="main__select">
+        <input placeholder="What you Want To Do......" id="inpt" type="text" maxlength="32" class="main-inpt" value="" />
+        <button id="onAddBtnClick" class="main-addBtn">Add</button>
+        <button class="main-resetBtn" id="onRstBtnClick"><i class="fa fa-refresh"></i></button>
+        <select id="selected-task" class="main-select">
                 <option value="all">ALL</option>
                 <option value="completed">Completed</option>
                 <option value="uncompleted">Uncompleted</option>
@@ -26,7 +26,7 @@
     </main>
     <!--Todo list-->
     <div class="Todos">
-        <ul id="myList" class="todo__list">
+        <ul id="myList" class="Todos__list">
         </ul>
     </div>
 

@@ -27,8 +27,8 @@
           justify-content: center;
 }
 
-.main .main__inpt {
-  height: 6vh;
+.main-inpt {
+  height: 7vh;
   width: 40vw;
   -webkit-box-shadow: 0 0 3px #666;
           box-shadow: 0 0 3px #666;
@@ -41,7 +41,7 @@
   font-weight: bolder;
 }
 
-.main .main__addBtn {
+.main-addBtn {
   border: none;
   width: 8vw;
   height: 7vh;
@@ -56,12 +56,12 @@
           font-kerning: auto;
 }
 
-.main .main__addBtn:hover {
+.main-addBtn:hover {
   background-color: #2C3E50;
   color: white;
 }
 
-.main .main__resetBtn {
+.main-resetBtn {
   background-color: #2C3E50;
   color: aliceblue;
   border: none;
@@ -76,7 +76,7 @@
   border: none;
 }
 
-.main .main__select {
+.main-select {
   border: none;
   width: 8vw;
   height: 7vh;
@@ -94,61 +94,22 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-left: 18%;
 }
 
-.cmpted {
-  background-color: #F4ECF7;
-  color: black;
-  opacity: 0.5;
-}
-
-.fa-edit {
-  pointer-events: none;
-  font-size: 16px;
-  color: blue;
-}
-
-.fa-edit:hover {
-  background-color: blue;
-  color: white;
-}
-
-.fa-check {
-  pointer-events: none;
-  font-size: 16px;
-  color: green;
-}
-
-.fa-check:hover {
-  background-color: green;
-  color: white;
-}
-
-.fa-trash {
-  pointer-events: none;
-  font-size: 16px;
-  color: red;
-}
-
-.fa-trash:hover {
-  background-color: red;
-  color: white;
-}
-
-ul {
+.Todos__list {
   list-style: none;
   -ms-flex-line-pack: center;
       align-content: center;
-  font-size: 30Px;
-  width: 80vw;
-  padding: 20px;
+  font-size: 25Px;
+  padding: 10px 10px 10px 10px;
+  margin-top: 25px;
 }
 
-ul li {
-  border: black;
+.Todos__item {
+  -webkit-box-shadow: 0 0 5px #666;
+          box-shadow: 0 0 5px #666;
   background-color: aliceblue;
-  width: 60vw;
+  width: 70vw;
   margin-bottom: 10PX;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -156,22 +117,36 @@ ul li {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  border: 2px solid purple;
 }
 
-ul li input {
-  width: 80%;
-  background-color: lightcyan;
-  height: 5vh;
-  color: black;
-  font-size: 18px;
-}
-
-ul li:hover {
+.Todos__item:hover {
   background-color: #a0ecec;
   font-weight: bolder;
 }
 
-ul li button {
+.Todos__item_cmpted {
+  background-color: #F4ECF7;
+  color: black;
+  opacity: 0.5;
+}
+
+.Todos__item-name {
+  width: 100vw;
+  padding: 6px 10px 6px 23px;
+}
+
+.Todos__item-editbox {
+  width: 150vw;
+  margin: 5px;
+  background-color: lightcyan;
+  padding: 0px 10px 0px 10px;
+  height: 5vh;
+  color: black;
+  font-size: 25px;
+}
+
+.Todos__item-check {
   background-color: transparent;
   border: none;
   font-weight: bolder;
@@ -187,8 +162,114 @@ ul li button {
           align-items: center;
 }
 
-ul li span {
-  width: 100%;
-  float: left;
+.Todos__item-check:hover {
+  background-color: green;
+  border-radius: 0px;
+  margin: 3px 0px 2px 13px;
+  height: 5vh;
+}
+
+.Todos__item-check:hover .fa-check {
+  color: white;
+}
+
+.Todos__item-delete {
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  margin-left: 20px;
+  height: 5vh;
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Todos__item-delete:hover {
+  background-color: red;
+  border-radius: 0px;
+  margin: 3px 0px 2px 13px;
+  height: 5vh;
+}
+
+.Todos__item-delete:hover .fa-trash {
+  color: white;
+}
+
+.Todos__item-delete .fa-trash {
+  pointer-events: none;
+  font-size: 16px;
+  color: red;
+}
+
+.Todos__item-delete .fa-trash:hover {
+  background-color: red;
+  color: white;
+}
+
+.Todos__item-edit {
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  margin-left: 20px;
+  height: 5vh;
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Todos__item-edit:hover {
+  background-color: blue;
+  border-radius: 0px;
+  margin: 3px 0px 2px 13px;
+  height: 5vh;
+}
+
+.Todos__item-edit:hover .fa-edit {
+  color: white;
+}
+
+.Todos__item-edit .fa-edit {
+  pointer-events: none;
+  font-size: 16px;
+  color: blue;
+}
+
+.Todos__item-edit .fa-edit:hover {
+  background-color: blue;
+  color: white;
+}
+
+.Todos__item-done {
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  margin-left: 20px;
+  height: 5vh;
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Todos__item-done:hover {
+  background-color: #2C3E50;
+  border-radius: 0px;
+  margin: 3px 0px 2px 13px;
+  height: 5vh;
+  color: white;
 }
 /*# sourceMappingURL=todo.css.map */

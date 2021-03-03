@@ -13,7 +13,24 @@
     font-size: 16px;
 }
 
-$bgcolor:#2C3E50;
+@mixin libtns {
+    background-color: transparent;
+    border: none;
+    font-weight: bolder;
+    margin-left: 20px;
+    height: 5vh;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    flex: 1;
+    align-items: center;
+}
+
+@mixin btn_hover {
+    border-radius: 0px;
+    margin: 3px 0px 2px 13px;
+    height: 5vh;
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -34,8 +51,8 @@ $bgcolor:#2C3E50;
     padding-top: 20px;
     display: flex;
     justify-content: center;
-    .main__inpt {
-        height: 6vh;
+    &-inpt {
+        height: 7vh;
         width: 40vw;
         box-shadow: 0 0 3px #666;
         border: none;
@@ -44,26 +61,26 @@ $bgcolor:#2C3E50;
         padding-left: 15px;
         font-weight: bolder;
     }
-    .main__addBtn {
+    &-addBtn {
         @include btn;
         font-family: Quicksand;
         color: white;
-        background-color: $bgcolor;
+        background-color: #2C3E50;
         font-kerning: auto;
         &:hover {
             background-color: #2C3E50;
             color: white;
         }
     }
-    .main__resetBtn {
-        background-color: $bgcolor;
+    &-resetBtn {
+        background-color: #2C3E50;
         color: aliceblue;
         @include btn;
         font-family: cursive;
         font-weight: bolder;
         border: none;
     }
-    .main__select {
+    &-select {
         @include btn;
         background-color: lightgray;
     }
@@ -72,80 +89,96 @@ $bgcolor:#2C3E50;
 .Todos {
     display: flex;
     justify-content: center;
-    margin-left: 18%;
-}
-
-.cmpted {
-    background-color: #F4ECF7;
-    color: black;
-    opacity: 0.5;
-}
-
-.fa-edit {
-    @include icon-btn;
-    color: blue;
-    &:hover {
-        background-color: blue;
-        color: white;
+    &__list {
+        list-style: none;
+        align-content: center;
+        font-size: 25Px;
+        padding: 10px 10px 10px 10px;
+        margin-top: 25px;
     }
-}
-
-.fa-check {
-    @include icon-btn;
-    color: green;
-    &:hover {
-        background-color: green;
-        color: white;
-    }
-}
-
-.fa-trash {
-    @include icon-btn;
-    color: red;
-    &:hover {
-        background-color: red;
-        color: white;
-    }
-}
-
-ul {
-    li {
-        input {
-            width: 80%;
-            background-color: lightcyan;
-            height: 5vh;
-            color: black;
-            font-size: 18px;
-        }
-        border: black;
+    &__item {
+        box-shadow: 0 0 5px #666;
         background-color: aliceblue;
-        width: 60vw;
+        width: 70vw;
         margin-bottom: 10PX;
         display: flex;
         flex: 1;
+        border: 2px solid purple;
         &:hover {
             background-color: #a0ecec;
             font-weight: bolder;
         }
-        button {
-            background-color: transparent;
-            border: none;
-            font-weight: bolder;
-            margin-left: 20px;
-            height: 5vh;
-            border-radius: 20px;
-            padding: 0px 10px 0px 10px;
-            flex: 1;
-            align-items: center;
+        &_cmpted {
+            background-color: #F4ECF7;
+            color: black;
+            opacity: 0.5;
         }
-        span {
-            width: 100%;
-            float: left;
+        &-name {
+            width: 100vw;
+            padding: 6px 10px 6px 23px;
+        }
+        &-editbox {
+            width: 150vw;
+            margin: 5px;
+            background-color: lightcyan;
+            padding: 0px 10px 0px 10px;
+            height: 5vh;
+            color: black;
+            font-size: 25px;
+        }
+        &-check {
+            @include libtns;
+            &:hover {
+                background-color: green;
+                @include btn_hover;
+                .fa-check {
+                    color: white;
+                }
+            }
+        }
+        &-delete {
+            @include libtns;
+            &:hover {
+                background-color: red;
+                @include btn_hover;
+                .fa-trash {
+                    color: white;
+                }
+            }
+            .fa-trash {
+                @include icon-btn;
+                color: red;
+                &:hover {
+                    background-color: red;
+                    color: white;
+                }
+            }
+        }
+        &-edit {
+            @include libtns;
+            &:hover {
+                background-color: blue;
+                @include btn_hover;
+                .fa-edit {
+                    color: white;
+                }
+            }
+            .fa-edit {
+                @include icon-btn;
+                color: blue;
+                &:hover {
+                    background-color: blue;
+                    color: white;
+                }
+            }
+        }
+        &-done {
+            @include libtns;
+            &:hover {
+                background-color: #2C3E50;
+                @include btn_hover;
+                color: white;
+            }
         }
     }
-    list-style: none;
-    align-content: center;
-    font-size: 30Px;
-    width: 80vw;
-    padding: 20px;
 }
