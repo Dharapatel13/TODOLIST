@@ -5,81 +5,76 @@ const elInput = document.getElementById("inpt");
 const onRstBtnClick = document.getElementById("onRstBtnClick");
 const onAddBtnClick = document.getElementById("onAddBtnClick");
 const onKeyPressEvnt = document.getElementById("inpt");
+const container = document.getElementById("Todos");
 
 let list = [];
 
 //loding page
 window.onload = () => {
-
     displayData();
 };
 
 //OnAddButton Click
 onAddBtnClick.onclick = () => {
-    // location.reload()
-    let elInput = document.getElementById("inpt").value;
 
-    if (elInput == null || elInput == 0 || elInput === "") {
-        alert("You must be write somting");
-    }
-    document.getElementById("myList").innerHTML = "";
-    list.push(elInput);
-    localStorage.setItem("todos", JSON.stringify(list));
-    displayData();
+    addData();
 }
-
-//onKey Press
-onKeyPressEvnt.onkeypress = (event) => {
-    let x = event.which || event.keyCode;
-    if (x == 13) {
-
+const addData = () => {
         let elInput = document.getElementById("inpt").value;
 
         if (elInput == null || elInput == 0 || elInput === "") {
             alert("You must be write somting");
         }
+
         document.getElementById("myList").innerHTML = "";
         list.push(elInput);
         localStorage.setItem("todos", JSON.stringify(list));
         displayData();
     }
+    //onKey Press
+onKeyPressEvnt.onkeypress = (event) => {
+    let x = event.which || event.keyCode;
+    if (x == 13) {
+
+        addData();
+    }
 }
 const displayData = () => {
 
-    if (JSON.parse(localStorage.getItem("todos")) != null)
+    if (JSON.parse(localStorage.getItem("todos")) != null) {
+        // document.getElementsByClassName("jdiv").style.display = "none";
         list = JSON.parse(localStorage.getItem("todos"));
-    for (let i = 0; i < list.length; i++) {
-        const elLi = document.createElement("li");
-        elLi.classList.add("Todos__item")
-        const elSpan = document.createElement("span");
-        elSpan.classList.add("Todos__item-name")
-        const elEditBtn = document.createElement('button');
-        elEditBtn.innerHTML = '<i class="fa fa-edit"></i>';
-        elEditBtn.classList.add('Todos__item-edit');
-        const elDtlBtn = document.createElement('button');
-        elDtlBtn.innerHTML = '<i class="fa fa-trash"></i>'
-        elDtlBtn.classList.add('Todos__item-delete')
-        const elCheckBtn = document.createElement("button");
-        elCheckBtn.innerHTML = '<i class="fa fa-check"></i>'
-        elCheckBtn.classList.add('Todos__item-check');
-        elLi.appendChild(elSpan);
-        elLi.appendChild(elCheckBtn);
-        elLi.appendChild(elDtlBtn);
-        elLi.appendChild(elEditBtn);
-        elSpan.innerHTML = list[i];
-        elInput.innerHTML = "";
-        elTodoList.appendChild(elLi);
+        for (let i = 0; i < list.length; i++) {
+            const elLi = document.createElement("li");
+            elLi.classList.add("Todos__item")
+            const elSpan = document.createElement("span");
+            elSpan.classList.add("Todos__item-name")
+            const elEditBtn = document.createElement('button');
+            elEditBtn.innerHTML = '<i class="fa fa-edit"></i>';
+            elEditBtn.classList.add('Todos__item-edit');
+            const elDtlBtn = document.createElement('button');
+            elDtlBtn.innerHTML = '<i class="fa fa-trash"></i>'
+            elDtlBtn.classList.add('Todos__item-delete')
+            const elCheckBtn = document.createElement("button");
+            elCheckBtn.innerHTML = '<i class="fa fa-check"></i>'
+            elCheckBtn.classList.add('Todos__item-check');
+            elLi.appendChild(elSpan);
+            elLi.appendChild(elCheckBtn);
+            elLi.appendChild(elDtlBtn);
+            elLi.appendChild(elEditBtn);
+            elSpan.innerHTML = list[i];
+            elInput.innerHTML = "";
+            elTodoList.appendChild(elLi);
+        }
     }
+
 
 }
 
 //clear local Storage Data
 onRstBtnClick.onclick = () => {
-
-    elTodoList.innerHTML = "";
+    location.reload();
     localStorage.clear();
-
-
 }
 
 
