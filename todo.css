@@ -56,11 +56,6 @@
           font-kerning: auto;
 }
 
-.main-addBtn:hover {
-  background-color: #2C3E50;
-  color: white;
-}
-
 .main-resetBtn {
   background-color: #2C3E50;
   color: aliceblue;

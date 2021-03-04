@@ -1,0 +1,32 @@
+@mixin btn {
+    border: none;
+    width: 8vw;
+    height: 7vh;
+    font-size: 18px;
+    margin-left: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+@mixin icon-btn {
+    pointer-events: none;
+    font-size: 16px;
+}
+
+@mixin libtns {
+    background-color: transparent;
+    border: none;
+    font-weight: bolder;
+    margin-left: 20px;
+    height: 5vh;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    flex: 1;
+    align-items: center;
+}
+
+@mixin btn_hover {
+    border-radius: 0px;
+    margin: 3px 0px 2px 13px;
+    height: 5vh;
+}

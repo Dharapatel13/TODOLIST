@@ -11,6 +11,41 @@ let list = [];
 //loding page
 window.onload = () => {
 
+    displayData();
+};
+
+//OnAddButton Click
+onAddBtnClick.onclick = () => {
+    // location.reload()
+    let elInput = document.getElementById("inpt").value;
+
+    if (elInput == null || elInput == 0 || elInput === "") {
+        alert("You must be write somting");
+    }
+    document.getElementById("myList").innerHTML = "";
+    list.push(elInput);
+    localStorage.setItem("todos", JSON.stringify(list));
+    displayData();
+}
+
+//onKey Press
+onKeyPressEvnt.onkeypress = (event) => {
+    let x = event.which || event.keyCode;
+    if (x == 13) {
+
+        let elInput = document.getElementById("inpt").value;
+
+        if (elInput == null || elInput == 0 || elInput === "") {
+            alert("You must be write somting");
+        }
+        document.getElementById("myList").innerHTML = "";
+        list.push(elInput);
+        localStorage.setItem("todos", JSON.stringify(list));
+        displayData();
+    }
+}
+const displayData = () => {
+
     if (JSON.parse(localStorage.getItem("todos")) != null)
         list = JSON.parse(localStorage.getItem("todos"));
     for (let i = 0; i < list.length; i++) {
@@ -36,43 +71,14 @@ window.onload = () => {
         elTodoList.appendChild(elLi);
     }
 
-};
-
-//OnAddButton Click
-onAddBtnClick.onclick = () => {
-    location.reload()
-    let elInput = document.getElementById("inpt").value;
-
-    if (elInput == null || elInput == 0 || elInput === "") {
-        alert("You must be write somting");
-    }
-    document.getElementById("myList").innerHTML = "";
-    list.push(elInput);
-    localStorage.setItem("todos", JSON.stringify(todos));
-
-}
-
-//onKey Press
-onKeyPressEvnt.onkeypress = (event) => {
-    let x = event.which || event.keyCode;
-    if (x == 13) {
-        location.reload();
-        let elInput = document.getElementById("inpt").value;
-
-        if (elInput == null || elInput == 0 || elInput === "") {
-            alert("You must be write somting");
-        }
-        document.getElementById("myList").innerHTML = "";
-        list.push(elInput);
-        localStorage.setItem("todos", JSON.stringify(list));
-    }
 }
 
 //clear local Storage Data
 onRstBtnClick.onclick = () => {
-    location.reload();
+
     elTodoList.innerHTML = "";
     localStorage.clear();
+
 
 }
 
@@ -86,7 +92,7 @@ elTodoList.addEventListener('click', (event) => {
         const jSpan = jLi.firstElementChild.textContent;
 
         if (trgBtn.classList[0] === "Todos__item-delete") {
-            location.reload();
+
             let list;
             if (localStorage.getItem("todos") == null) {
                 list = [];
@@ -96,9 +102,12 @@ elTodoList.addEventListener('click', (event) => {
             const todoindex = jSpan;
             if (confirm("Are u Sure?")) {
                 list.splice(list.indexOf(todoindex), 1);
+
             }
 
             localStorage.setItem("todos", JSON.stringify(list))
+            elTodoList.innerHTML = "";
+            displayData();
         } else if (trgBtn.classList[0] === "Todos__item-edit") {
             const jsSpan = jLi.firstElementChild;
             const input = document.createElement('input');
@@ -114,7 +123,7 @@ elTodoList.addEventListener('click', (event) => {
 
 
         } else if (trgBtn.textContent === "DONE") {
-            location.reload();
+            // location.reload();
             const input = jLi.firstElementChild;
             console.log(jLi.childNodes[1].tagName)
             let jsInput = input.value;
@@ -132,6 +141,8 @@ elTodoList.addEventListener('click', (event) => {
 
                 }
                 localStorage.setItem("todos", JSON.stringify(todos))
+                elTodoList.innerHTML = "";
+                displayData();
             }
 
         } else if (trgBtn.classList.contains("Todos__item-check")) {
